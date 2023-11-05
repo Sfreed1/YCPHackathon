@@ -1,19 +1,87 @@
-<html><head><title>Summary and Potential Hazards</title></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summary and Potential Hazards</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .section {
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  p {
+    background-color: #e7f4ff;
+    padding: 10px;
+    border-left: 5px solid #0056b3;
+  }
+  button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+</style>
+</head>
 <body>
-<h1>Summary and Potential Hazards</h1>
-<ul>
-<li>The text is the Terms of Service for Google. It outlines what users can expect from Google, the age requirements for using Google services, the relationship between users and Google, and the rules and conduct expected from users. It also covers the permission to use and license the content uploaded or shared by users.</li>
-<li></li>
-<li>Potential hazards or security concerns:</li>
-<li></li>
-<li>1. Privacy concerns: Users should be aware of the privacy implications of using Google services and how their information may be collected, stored, and shared.</li>
-<li></li>
-<li>2. Age requirements: Users under the required age to manage their own Google Account must have parental or legal guardian permission. Parents/guardians should be aware of their child's activity and take responsibility for their actions.</li>
-<li></li>
-<li>3. Intellectual property rights: Users should ensure they have the necessary rights to upload and share content on Google services to avoid copyright infringement issues.</li>
-<li></li>
-<li>4. Conduct and abuse: Users must follow the rules of conduct outlined in the terms, including respecting the rights of others, not abusing or harming others, and not interfering or disrupting the services. Violations could lead to consequences or actions taken by Google.</li>
-<li></li>
-<li>5. Changes to services: Google may make material changes to their services, which could impact a user's experience or access to certain features. Users should be aware of any notifications or updates provided by Google regarding these changes.</li>
-</ul>
-</body></html>
+  <div class="container">
+    <h1>Terms and Conditions Analysis</h1>
+    <div class="section">
+      <h2>Summary</h2>
+      <p>What you can expect from Google:<br>- Provide a broad range of useful services<br>- Develop, improve, and update Google services<br><br>What Google expects from you:<br>- Follow the terms and service-specific additional terms<br>- Respect others<br>- Permission to use your content<br><br>License:<br>- Your content remains yours<br>- Google requires permission to use your content<br>- The license covers protected intellectual property rights<br><br>Potential Hazards/Security Concerns:<br>- Privacy concerns: Users should be aware of how their information is collected, stored, and used by Google.<br>- Intellectual property rights: Users should ensure that they have the necessary rights to upload and share content on Google services.<br>- Abuse and inappropriate conduct: Users should be mindful of following the rules and guidelines set by Google to maintain a respectful environment.<br>- Malware and hacking: Users should be cautious of any suspicious activities on Google services and report any abuse or disruptions.<br>- Changes to services: Users should stay informed about any material changes or discontinuation of services and make necessary arrangements, such as exporting content using Google Takeout.</p>
+    </div>
+    <div class="section">
+      <h2>Potential Hazards</h2>
+      <p></p>
+    </div>
+    <div class="button-container">
+      <button onclick="speakText('en-US')">Listen in English</button>
+      <button onclick="speakText('es-ES')">Escuchar en Español</button>
+      <button onclick="stopText()">Stop Audio</button>
+    </div>
+  </div>
+  <script>
+    var synth = window.speechSynthesis;
+    function speakText(language) {
+      if (synth.speaking) {
+          synth.cancel(); // Stop any currently speaking audio
+      }
+      var summaryText = document.querySelector('.section:nth-child(2) p').textContent;
+      var hazardsText = document.querySelector('.section:nth-child(3) p').textContent;
+      var textToSpeak = summaryText + " " + hazardsText;
+      var utterThis = new SpeechSynthesisUtterance(textToSpeak);
+      utterThis.lang = language; // Set the language
+      synth.speak(utterThis);
+    }
+
+    function stopText() {
+      synth.cancel();
+    }
+  </script>
+</body>
+</html>
